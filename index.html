@@ -1132,9 +1132,40 @@ footer {
         <div class="q-step" id="q-8">
           <div class="q-title">¡Ya casi! 🎉 Déjanos tus datos</div>
           <div class="q-sub">Te enviamos el <strong>Checklist INVIMA en PDF</strong> y tu diagnóstico personalizado al instante.</div>
-          <div class="q-field"><label>Nombre completo</label><input type="text" id="qNombre" placeholder="Ej: Ana García" oninput="qCheckContact()"></div>
-          <div class="q-field"><label>WhatsApp</label><input type="tel" id="qWhatsapp" placeholder="Ej: 3181471085" oninput="qCheckContact()"></div>
-          <div class="q-field"><label>Correo electrónico</label><input type="email" id="qEmail" placeholder="Ej: ana@minegocio.com" oninput="qCheckContact()"></div>
+
+          <div class="q-field"><label>Nombre completo <span style="color:#e53e3e">*</span></label><input type="text" id="qNombre" placeholder="Ej: Ana García" oninput="qCheckContact()"></div>
+
+          <div class="q-field"><label>Nombre de la empresa <span style="color:#e53e3e">*</span></label><input type="text" id="qEmpresa" placeholder="Ej: Delicias García S.A.S." oninput="qCheckContact()"></div>
+
+          <div class="q-field">
+            <label>Cargo <span style="font-size:11px;color:var(--texto2);font-weight:500;text-transform:none;letter-spacing:0">(opcional)</span></label>
+            <input type="text" id="qCargo" placeholder="Ej: Gerente, Fundador, Propietario">
+          </div>
+
+          <div class="q-field">
+  <label>WhatsApp <span style="color:#e53e3e">*</span> <span style="font-size:11px;color:var(--p3);font-weight:600;text-transform:none;letter-spacing:0">(sin +57, solo 10 dígitos)</span></label>
+  <div style="display:flex;align-items:center;gap:0;border:2px solid var(--borde);border-radius:11px;overflow:hidden;transition:border-color 0.18s;" id="waWrap">
+    <span style="padding:12px 12px;background:var(--fondo2);color:var(--texto2);font-size:14px;font-weight:700;border-right:2px solid var(--borde);white-space:nowrap;">🇨🇴 +57</span>
+    <input type="tel" id="qWhatsapp" placeholder="3181471085" maxlength="10"
+      style="border:none;outline:none;padding:12px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;color:var(--texto);width:100%;background:transparent;"
+      oninput="qCheckContact()" onfocus="document.getElementById('waWrap').style.borderColor='var(--p3)'" onblur="validateWa()">
+  </div>
+  <span id="waError" style="display:none;font-size:11px;color:#e53e3e;font-weight:600;margin-top:4px;">⚠️ Ingresa un número colombiano válido de 10 dígitos (ej: 3181471085)</span>
+</div>
+
+          <div class="q-field">
+  <label>Correo electrónico <span style="color:#e53e3e">*</span></label>
+  <input type="email" id="qEmail" placeholder="Ej: ana@minegocio.com"
+    oninput="qCheckContact()" onblur="validateEmail()">
+  <span id="emailError" style="display:none;font-size:11px;color:#e53e3e;font-weight:600;margin-top:4px;">⚠️ Ingresa un correo electrónico válido (ej: ana@minegocio.com)</span>
+</div>
+
+          <div class="q-field">
+            <label>LinkedIn <span style="font-size:11px;color:var(--texto2);font-weight:500;text-transform:none;letter-spacing:0">(opcional)</span></label>
+            <input type="url" id="qLinkedin" placeholder="Ej: linkedin.com/in/anagarcia" onblur="validateLinkedin()">
+            <span id="linkedinError" style="display:none;font-size:11px;color:#e53e3e;font-weight:600;margin-top:4px;">⚠️ Ingresa una URL válida de LinkedIn</span>
+          </div>
+
           <div class="optin-wrap">
             <input type="checkbox" id="qOptin" onchange="qCheckContact()">
             <label for="qOptin">Acepto recibir el <strong>Checklist INVIMA gratuito</strong> y contenido educativo de <strong>Formalízalo</strong>. Puedo cancelar cuando quiera.</label>
@@ -1426,13 +1457,83 @@ function qPrev(from) {
   }
 }
 
+// ── Validación WhatsApp colombiano ──
+function isValidWa(val) {
+  const clean = val.replace(/\D/g, '');
+  // 10 dígitos, empieza en 3
+  return /^3\d{9}$/.test(clean);
+}
+
+// ── Validación Email ──
+function isValidEmail(val) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+}
+
+function validateWa() {
+  const val = document.getElementById('qWhatsapp').value;
+  const err = document.getElementById('waError');
+  const wrap = document.getElementById('waWrap');
+  if (val && !isValidWa(val)) {
+    err.style.display = 'block';
+    wrap.style.borderColor = '#e53e3e';
+  } else {
+    err.style.display = 'none';
+    wrap.style.borderColor = val ? 'var(--p3)' : 'var(--borde)';
+  }
+  qCheckContact();
+}
+
+function validateEmail() {
+  const val = document.getElementById('qEmail').value;
+  const err = document.getElementById('emailError');
+  const input = document.getElementById('qEmail');
+  if (val && !isValidEmail(val)) {
+    err.style.display = 'block';
+    input.style.borderColor = '#e53e3e';
+  } else {
+    err.style.display = 'none';
+    input.style.borderColor = val ? 'var(--p3)' : 'var(--borde)';
+  }
+  qCheckContact();
+}
+
 function qCheckContact() {
-  const ok = document.getElementById('qNombre').value.trim()
-          && document.getElementById('qWhatsapp').value.trim()
-          && document.getElementById('qEmail').value.trim()
-          && document.getElementById('qOptin').checked;
+  const nombre   = document.getElementById('qNombre').value.trim();
+  const empresa  = document.getElementById('qEmpresa').value.trim();
+  const whatsapp = document.getElementById('qWhatsapp').value.trim();
+  const email    = document.getElementById('qEmail').value.trim();
+  const optin    = document.getElementById('qOptin').checked;
+  const ok = nombre && empresa && isValidWa(whatsapp) && isValidEmail(email) && optin;
   document.getElementById('qn-8').disabled = !ok;
 }
+
+// ── Validación LinkedIn (opcional) ──
+function validateLinkedin() {
+  const val = document.getElementById('qLinkedin').value.trim();
+  const err = document.getElementById('linkedinError');
+  const input = document.getElementById('qLinkedin');
+  if (val && !val.match(/linkedin\.com\//i) && !val.match(/^https?:\/\//)) {
+    err.style.display = 'block';
+    input.style.borderColor = '#e53e3e';
+  } else {
+    err.style.display = 'none';
+    input.style.borderColor = val ? 'var(--p3)' : 'var(--borde)';
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const waInput = document.getElementById('qWhatsapp');
+  if (waInput) {
+    waInput.addEventListener('keypress', e => {
+      if (!/\d/.test(e.key)) e.preventDefault();
+    });
+    waInput.addEventListener('paste', e => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,10);
+      waInput.value = pasted;
+      qCheckContact();
+    });
+  }
+});
 
 function qCalcScore() {
   let t = 0;
@@ -1562,16 +1663,20 @@ function qBuildResult(cat, score, nombre) {
 
 async function qSubmit() {
   const nombre   = document.getElementById('qNombre').value.trim();
+  const empresa  = document.getElementById('qEmpresa').value.trim();
+  const cargo    = document.getElementById('qCargo').value.trim();
   const whatsapp = document.getElementById('qWhatsapp').value.trim();
   const email    = document.getElementById('qEmail').value.trim();
+  const linkedin = document.getElementById('qLinkedin').value.trim();
   const optin    = document.getElementById('qOptin').checked;
 
-  qShowStep('loading', 'forward');
+  const whatsappFull = '+57' + whatsapp.replace(/\D/g, '');
 
   const score     = qCalcScore();
   const categoria = qClassify(score);
   const payload   = {
-    nombre, whatsapp, email, optin_email: optin, score, categoria,
+    nombre, empresa, cargo, whatsapp: whatsappFull, email, linkedin,
+    optin_email: optin, score, categoria,
     respuestas: { q1: qAnswers[1], q2: qAnswers[2], q3: qAnswers[3], q4: qAnswers[4], q5: qAnswers[5], q6: qAnswers[6], q7: qAnswers[7] },
     timestamp: new Date().toISOString()
   };
