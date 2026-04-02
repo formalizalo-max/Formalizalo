@@ -164,6 +164,44 @@ nav {
 
 @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
 
+/* ═══ HERO VIDEO LAYOUT ═══ */
+.hero-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 56px; align-items: center;
+}
+.hero-content { text-align: left; }
+.hero-content .hero-badge { margin-bottom: 24px; }
+.hero-content h1 { margin: 0 0 20px; max-width: 100%; text-align: left; }
+.hero-content .hero-sub { margin: 0 0 36px; max-width: 100%; text-align: left; }
+.hero-content .hero-ctas { justify-content: flex-start; }
+
+.hero-video-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+  aspect-ratio: 16/9;
+  animation: fadeDown 0.7s 0.3s ease both;
+}
+.hero-video-wrap iframe {
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
+
+.hero-stats { margin-top: 56px; }
+
+@media (max-width: 860px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-content { text-align: center; }
+  .hero-content h1 { text-align: center; }
+  .hero-content .hero-sub { text-align: center; }
+  .hero-content .hero-ctas { justify-content: center; }
+}
+
 /* ═══════════════════════════════════════════
    LEAD MAGNET SECTION
 ═══════════════════════════════════════════ */
@@ -713,6 +751,7 @@ nav {
   padding: 13px; border-radius: 11px; margin-top: 24px;
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700;
   cursor: pointer; transition: all 0.2s; border: none;
+  text-decoration: none; box-sizing: border-box;
 }
 .pr-card:not(.featured) .pr-btn { background: var(--grad); color: var(--blanco); box-shadow: 0 4px 14px rgba(74,47,160,0.2); }
 .pr-card:not(.featured) .pr-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,47,160,0.3); }
@@ -811,7 +850,7 @@ footer {
     <a href="#testimonios">Historias</a>
     <a href="#precios">Precios</a>
     <a href="#faq">FAQs</a>
-    <a href="#diagnostico-gratuito" class="nav-cta">Haz tu diagnóstico gratis</a>
+    <a href="#diagnostico-gratuito" class="nav-cta">Ver si calificás →</a>
   </div>
 </nav>
 
@@ -821,29 +860,46 @@ footer {
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-orb hero-orb-3"></div>
 
-  <div class="hero-badge">
-    <div class="hero-badge-dot"></div>
-    Registro INVIMA · BPM · Tablas Nutricionales · Empaque
-  </div>
+  <div class="hero-inner">
 
-  <h1>¿Listo para vender tu producto<br><span>en supermercados y sin riesgos?</span></h1>
+    <!-- Columna izquierda: texto y CTAs -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Registro INVIMA · BPM · Tablas Nutricionales · Empaque
+      </div>
 
-  <p class="hero-sub">Descubre en 2 minutos qué necesita tu negocio para formalizarse — y llévate el Checklist gratuito que el INVIMA usa en sus visitas.</p>
+      <h1>Nosotros hacemos<br><span>todo el trámite por ti.</span></h1>
 
-  <div class="hero-ctas">
-    <a href="#diagnostico-gratuito" class="btn-hero-primary">
-      ✅ Hacer mi diagnóstico gratis
-    </a>
-    <a href="#diagnostico-gratuito" class="btn-hero-secondary">
-      📘 Recibir Checklist INVIMA gratis
-    </a>
-  </div>
+      <p class="hero-sub">Tú te enfocas en producir. Nuestro equipo de Ingenieros de Alimentos se encarga del Registro INVIMA, las BPM y el empaque legal — de principio a fin, sin que tengas que navegar la burocracia solo.</p>
+
+      <div class="hero-ctas">
+        <a href="#diagnostico-gratuito" class="btn-hero-primary">
+          ✅ Ver si calificamos para tu caso
+        </a>
+        <a href="#diagnostico-gratuito" class="btn-hero-secondary">
+          📘 Recibir Checklist INVIMA gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna derecha: video embebido -->
+    <div class="hero-video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/OTRrWd078JU?rel=0&modestbranding=1&color=white&autoplay=1&mute=1&playsinline=1"
+        title="Formalízalo — Lo hacemos todo por ti"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div><!-- /hero-inner -->
 
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">+<span>100</span></div><div class="stat-label">Clientes formalizados</div></div>
+    <div class="stat"><div class="stat-num">+<span>100</span></div><div class="stat-label">Negocios formalizados</div></div>
     <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label">Legal garantizado</div></div>
-    <div class="stat"><div class="stat-num"><span>24</span>h</div><div class="stat-label">Primeras entregas</div></div>
-    <div class="stat"><div class="stat-num"><span>3</span></div><div class="stat-label">Servicios clave</div></div>
+    <div class="stat"><div class="stat-num"><span>24</span>h</div><div class="stat-label">Primera respuesta</div></div>
+    <div class="stat"><div class="stat-num"><span>0</span></div><div class="stat-label">Trámites que haces tú</div></div>
   </div>
 </section>
 
@@ -853,7 +909,7 @@ footer {
     <div class="lm-text">
       <span class="lm-label">🎁 Recurso Gratuito</span>
       <h2>El <span>Checklist que el INVIMA</span> revisa cuando entra a tu planta</h2>
-      <p>Antes de hacer cualquier inversión, necesitas saber exactamente en qué estado está tu negocio. Este checklist cubre los puntos de Buenas Prácticas de Manufactura (BPM) que el INVIMA verifica en cada visita.</p>
+      <p>Antes de que te llamen o te visiten, necesitas saber exactamente dónde estás parado. Este checklist cubre los puntos de Buenas Prácticas de Manufactura (BPM) que nuestro equipo trabaja contigo para que los cumplas — sin que tengas que estudiar la norma.</p>
       <div class="checklist-preview">
         <div class="check-item"><div class="check-icon">✓</div>Condiciones estructurales y sanitarias de la planta</div>
         <div class="check-item"><div class="check-icon">✓</div>Requisitos de personal y manejo de alimentos</div>
@@ -897,29 +953,29 @@ footer {
 <section class="dolor">
   <div class="section-center">
     <span class="section-label">¿Te identificas?</span>
-    <h2>Vender sin registro INVIMA es más peligroso de lo que crees</h2>
-    <p>Cada semana que produces sin cumplir la norma estás expuesto a sanciones, decomisos y cierres que pueden acabar con lo que construiste.</p>
+    <h2>Formalizar solo es frustrante — y costoso si lo haces mal</h2>
+    <p>Los emprendedores que intentan hacer el trámite por su cuenta pierden meses, pagan rechazos y siguen igual. Nosotros ya lo hemos hecho más de 100 veces: conocemos cada paso, cada formulario y cada obstáculo.</p>
   </div>
   <div class="dolor-grid">
     <div class="dolor-card">
       <div class="dolor-emoji">😰</div>
-      <h3>Demasiada información confusa</h3>
-      <p>Internet está lleno de artículos contradictorios sobre registros, notificaciones y permisos. No sabes por dónde empezar ni qué aplica para tu producto.</p>
+      <h3>Información confusa y contradictoria</h3>
+      <p>Cada página dice algo diferente. Nuestro equipo te da la ruta exacta para tu producto, sin que tengas que descifrar la norma por tu cuenta.</p>
     </div>
     <div class="dolor-card">
       <div class="dolor-emoji">💸</div>
-      <h3>Miedo a invertir y que te rechacen</h3>
-      <p>Ya has oído casos de emprendedores que pagaron millones y el trámite fue rechazado. No quieres cometer el mismo error sin tener claridad del proceso.</p>
+      <h3>Dinero perdido en rechazos</h3>
+      <p>Un trámite mal preparado puede costar millones y terminar en nada. Nosotros lo entregamos listo: documentación, formularios y seguimiento incluidos.</p>
     </div>
     <div class="dolor-card">
       <div class="dolor-emoji">🚫</div>
-      <h3>Supermercados y tiendas te piden registro</h3>
-      <p>Tus clientes más grandes exigen documentos que no tienes. Estás perdiendo contratos y oportunidades de crecer solo por falta de formalización.</p>
+      <h3>Supermercados y cadenas te exigen registro</h3>
+      <p>Estás perdiendo contratos grandes por no tener el papel. Con Formalízalo, obtienes el registro y entras a esos canales con respaldo profesional.</p>
     </div>
     <div class="dolor-card">
       <div class="dolor-emoji">⚠️</div>
-      <h3>El INVIMA puede aparecer cualquier día</h3>
-      <p>Una visita sin estar preparado puede significar decomisos, multas de millones de pesos o el cierre de tu planta. El riesgo crece con cada día que pasa.</p>
+      <h3>El INVIMA puede llegar sin aviso</h3>
+      <p>Una visita sin estar preparado puede cerrar tu negocio. Nuestro equipo te deja listo antes de que eso pase — y si ya llegaron, te ayudamos a responder.</p>
     </div>
   </div>
 </section>
@@ -928,15 +984,15 @@ footer {
 <section class="beneficios" id="servicios">
   <div class="ben-inner">
     <div class="section-center">
-      <span class="section-label">Lo que obtienes</span>
-      <h2>Te damos claridad, seguridad y una ruta legal</h2>
-      <p>En 30 minutos de asesoría gratuita, nuestro Ingeniero de Alimentos te entrega un plan personalizado con pasos, tiempos y costos reales.</p>
+      <span class="section-label">Cómo trabajamos</span>
+      <h2>Lo hacemos todo por ti — tú solo apruebas</h2>
+      <p>No te damos una guía para que lo hagas solo. Nuestro Ingeniero de Alimentos se hace cargo del proceso completo: documentos, trámites, correcciones y seguimiento hasta tener el resultado en tus manos.</p>
     </div>
     <div class="ben-grid">
-      <div class="ben-card"><div class="ben-num">01</div><h3>Diagnóstico personalizado</h3><p>Evaluamos tu producto, tu planta y tu situación actual para darte la ruta exacta que necesitas — no una genérica.</p></div>
-      <div class="ben-card"><div class="ben-num">02</div><h3>Sin tecnicismos</h3><p>Te explicamos todo en lenguaje claro. Nada de jerga regulatoria que confunda más de lo que ayuda.</p></div>
-      <div class="ben-card"><div class="ben-num">03</div><h3>Acompañamiento real</h3><p>No te dejamos solo en el proceso. Un Ingeniero de Alimentos certificado te guía desde el diagnóstico hasta el registro.</p></div>
-      <div class="ben-card"><div class="ben-num">04</div><h3>Para todo Colombia</h3><p>Atendemos desde Cali pero trabajamos con emprendedores de todo el país, 100% virtual y ágil.</p></div>
+      <div class="ben-card"><div class="ben-num">01</div><h3>Diagnóstico y ruta personalizada</h3><p>Evaluamos tu producto, tu planta y tu situación real. Te decimos qué necesitas — y nosotros lo gestionamos.</p></div>
+      <div class="ben-card"><div class="ben-num">02</div><h3>Nosotros preparamos todo</h3><p>Documentos, formularios, análisis, diseño de empaque. Tú solo revisas y apruebas. Sin tecnicismos, sin estrés.</p></div>
+      <div class="ben-card"><div class="ben-num">03</div><h3>Acompañamiento hasta el final</h3><p>No desaparecemos después del primer paso. Seguimos contigo hasta que el registro o la certificación esté en tus manos.</p></div>
+      <div class="ben-card"><div class="ben-num">04</div><h3>100% virtual, desde cualquier ciudad</h3><p>Trabajamos con emprendedores de todo Colombia. No necesitas viajar ni desplazarte — todo se gestiona de forma ágil y remota.</p></div>
     </div>
   </div>
 </section>
@@ -946,31 +1002,31 @@ footer {
   <div class="serv-inner">
     <div class="section-center">
       <span class="section-label">Nuestros servicios</span>
-      <h2>Todo lo que necesitas para vender legal</h2>
+      <h2>Un equipo completo trabajando por tu negocio</h2>
     </div>
     <div class="serv-grid">
       <div class="serv-card">
         <div class="serv-icon">📋</div>
         <h3>Registro INVIMA</h3>
-        <p>Realizamos y acompañamos tu trámite completo. Desde la preparación de documentos hasta la entrega del registro en tiempos récord.</p>
+        <p>Nos encargamos de todo: preparación de documentos, radicación, seguimiento y correcciones. Tú recibes el registro, sin dolor de cabeza.</p>
         <span class="serv-tag">Pago único</span>
       </div>
       <div class="serv-card">
         <div class="serv-icon">🧪</div>
         <h3>Tabla Nutricional</h3>
-        <p>Precisión y legalidad garantizada. Análisis de laboratorio con resultados rápidos y formato conforme a la normativa INVIMA vigente.</p>
+        <p>Coordinamos el análisis de laboratorio, interpretamos los resultados y entregamos la tabla en el formato exacto que exige la norma INVIMA.</p>
         <span class="serv-tag">Entrega en 24h</span>
       </div>
       <div class="serv-card">
         <div class="serv-icon">🎨</div>
         <h3>Diseño de Empaque</h3>
-        <p>Empaques atractivos y normativos. Diseño que cumple con todos los requisitos legales de etiquetado y que además vende más.</p>
+        <p>Diseñamos el empaque que cumple todos los requisitos legales y que además hace que tu producto se vea profesional en la góndola.</p>
         <span class="serv-tag">Normativo + Visual</span>
       </div>
       <div class="serv-card">
         <div class="serv-icon">🏭</div>
         <h3>Consultoría BPM</h3>
-        <p>Optimiza y certifica tus Buenas Prácticas de Manufactura en planta. Sesiones personalizadas para estar listo cuando el INVIMA llegue.</p>
+        <p>Visitamos tu planta (o trabajamos contigo de forma virtual), identificamos los puntos críticos y te dejamos listo para recibir al INVIMA sin miedo.</p>
         <span class="serv-tag">Plan mensual 4 meses</span>
       </div>
     </div>
@@ -981,9 +1037,9 @@ footer {
 <section class="testimonios" id="testimonios">
   <div class="test-inner">
     <div class="section-center">
-      <span class="section-label">Historias que inspiran</span>
-      <h2>Emprendedores que transformaron<br>su negocio de alimentos</h2>
-      <p>Ellos también tenían dudas. Hoy venden legal, con confianza y sin riesgos.</p>
+      <span class="section-label">Lo que dicen nuestros clientes</span>
+      <h2>Ellos no lo hicieron solos —<br>y por eso funcionó</h2>
+      <p>Más de 100 emprendedores ya tienen su registro, su empaque y su planta en regla. Esto es lo que nos dicen.</p>
     </div>
     <div class="test-grid">
       <div class="test-card">
@@ -1010,16 +1066,16 @@ footer {
   <div class="cal-inner">
     <div class="cal-header">
       <span class="section-label" style="background:rgba(255,140,0,0.1);color:var(--naranja);border-color:rgba(255,140,0,0.2)">🎯 Diagnóstico Gratuito</span>
-      <h2>No inicies tu Registro INVIMA sin revisar<br>este checklist clave</h2>
-      <p>7 preguntas · 1 minuto · <strong>Asesoría Gratuita+Checklist INVIMA en tu correo</strong> al terminar</p>
+      <h2>¿Podemos ayudarte?<br>Descúbrelo en 2 minutos</h2>
+      <p>Respondé 7 preguntas rápidas. Si tu negocio califica, un asesor te contacta en menos de 24 horas para que empecemos a trabajar. <strong>Resultado inmediato + Checklist INVIMA en tu correo.</strong></p>
     </div>
 
     <div class="quiz-card">
       <div class="quiz-header">
         <div class="quiz-header-row">
           <div>
-            <h3>Diagnóstico de Planta</h3>
-            <p>Responde con honestidad para obtener tu ruta personalizada</p>
+            <h3>Filtro de diagnóstico — Formalízalo</h3>
+            <p>Respondé con honestidad: esto nos ayuda a ver si somos el equipo indicado para tu caso</p>
           </div>
         </div>
         <div class="quiz-tags">
@@ -1132,8 +1188,8 @@ footer {
 
         <!-- CONTACTO -->
         <div class="q-step" id="q-8">
-          <div class="q-title">¡Ya casi! 🎉 Déjanos tus datos</div>
-          <div class="q-sub">Te enviamos el <strong>Checklist INVIMA en PDF</strong> y tu diagnóstico personalizado al instante.</div>
+          <div class="q-title">¡Excelente! 🎉 Dejanos tus datos para enviarte el resultado</div>
+          <div class="q-sub">Te enviamos el <strong>Checklist INVIMA en PDF</strong> y tu diagnóstico personalizado al instante. Si calificás, un asesor te escribe en menos de 24 h.</div>
 
           <div class="q-field"><label>Nombre completo <span style="color:#e53e3e">*</span></label><input type="text" id="qNombre" placeholder="Ej: Ana García" oninput="qCheckContact()"></div>
 
@@ -1159,7 +1215,7 @@ footer {
   <label>Correo electrónico <span style="color:#e53e3e">*</span></label>
   <input type="email" id="qEmail" placeholder="Ej: ana@minegocio.com"
     oninput="qCheckContact()" onblur="validateEmail()">
-  <span id="emailError" style="display:none;font-size:11px;color:#e53e3e;font-weight:600;margin-top:4px;">⚠️ Ingresa un correo electrónico válido (ej: ana@minegocio.com)</span>
+  <span id="emailError" style="display:none;font-size:11px;color:#e53e3e;font-weight:600;margin-top:4px;">⚠️ Ingresa un correo electrónico válido (ej: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13727d72537e7a7d76747c707a7c3d707c7e">[email&#160;protected]</a>)</span>
 </div>
 
           <div class="q-field">
@@ -1203,8 +1259,8 @@ footer {
   <div class="eq-inner">
     <div class="section-center">
       <span class="section-label">Nuestro equipo</span>
-      <h2>Expertos reales, no intermediarios</h2>
-      <p>Trabajas directamente con profesionales con experiencia en regulación alimentaria y crecimiento de negocios.</p>
+      <h2>Tu trámite en manos de expertos reales</h2>
+      <p>No trabajás con una plataforma ni con un chatbot. Tenés un equipo de profesionales que conoce la norma, los laboratorios y los procesos — y que se hace cargo por vos.</p>
     </div>
     <div class="eq-grid">
       <div class="eq-card">
@@ -1228,8 +1284,8 @@ footer {
   <div class="pr-inner">
     <div class="section-center">
       <span class="section-label">Nuestros precios</span>
-      <h2>Elige el plan ideal para tu negocio</h2>
-      <p>Transparencia total. Sin costos ocultos. Sin sorpresas.</p>
+      <h2>Invertís una vez — nosotros lo hacemos todo</h2>
+      <p>Sin costos ocultos. Sin sorpresas. Sabés exactamente qué incluye cada plan antes de dar un paso.</p>
     </div>
     <div class="pr-grid">
       <div class="pr-card">
@@ -1241,7 +1297,7 @@ footer {
         <div class="pr-feat"><span class="pr-check">✓</span>Diagnóstico de tu situación actual</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Checklist INVIMA gratuito</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Plan de acción personalizado</div>
-        <button class="pr-btn" onclick="document.getElementById('diagnostico-gratuito').scrollIntoView({behavior:'smooth'})">Empezar gratis →</button>
+        <a class="pr-btn" href="https://wa.me/573181471085?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Formal%C3%ADzalo%20y%20me%20interesa%20la%20%F0%9F%93%9E%20Consultor%C3%ADa%20Gratuita.%20%C2%BFPodr%C3%ADamos%20agendar%20una%20asesor%C3%ADa%3F" target="_blank" rel="noopener">💬 Empezar gratis por WhatsApp →</a>
       </div>
       <div class="pr-card featured">
         <div class="pr-badge">⭐ Más Popular</div>
@@ -1253,7 +1309,7 @@ footer {
         <div class="pr-feat"><span class="pr-check">✓</span>Asesoría de empaque normativo</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Tabla nutricional certificada</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Trámite Registro INVIMA</div>
-        <button class="pr-btn" onclick="document.getElementById('diagnostico-gratuito').scrollIntoView({behavior:'smooth'})">Solicitar servicio →</button>
+        <a class="pr-btn" href="https://wa.me/573181471085?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Formal%C3%ADzalo%20y%20quiero%20contratar%20el%20%E2%AD%90%20Plan%20B%C3%A1sico%20INVIMA%20(%241.099.000%20COP).%20%C2%BFCu%C3%A1les%20son%20los%20pr%C3%B3ximos%20pasos%3F" target="_blank" rel="noopener">💬 Solicitar este plan por WhatsApp →</a>
       </div>
       <div class="pr-card">
         <div class="pr-name">Consultoría BPM + Empaque</div>
@@ -1264,7 +1320,7 @@ footer {
         <div class="pr-feat"><span class="pr-check">✓</span>Diseño de empaque normativo</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Certificación BPM en planta</div>
         <div class="pr-feat"><span class="pr-check">✓</span>Financiación de pago</div>
-        <button class="pr-btn" onclick="document.getElementById('diagnostico-gratuito').scrollIntoView({behavior:'smooth'})">Solicitar servicio →</button>
+        <a class="pr-btn" href="https://wa.me/573181471085?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Formal%C3%ADzalo%20y%20me%20interesa%20la%20%F0%9F%8F%AD%20Consultor%C3%ADa%20BPM%20%2B%20Empaque%20(%241.174.750%20COP%2Fmes%20por%204%20meses).%20%C2%BFPodr%C3%ADan%20contarme%20m%C3%A1s%3F" target="_blank" rel="noopener">💬 Solicitar este plan por WhatsApp →</a>
       </div>
     </div>
   </div>
@@ -1304,10 +1360,10 @@ footer {
 
 <!-- ═══ FOOTER CTA ═══ -->
 <section class="footer-cta">
-  <h2>¿Listo para vender legal y sin riesgos?</h2>
-  <p>La formalización de tu producto puede ser más simple de lo que crees. Empieza con el diagnóstico gratuito hoy.</p>
+  <h2>¿Querés vender legal sin hacer el trámite solo?</h2>
+  <p>Hacé el diagnóstico, descubrí si calificás y dejá que nuestro equipo se encargue de todo — vos seguís produciendo.</p>
   <div class="footer-cta-btns">
-    <a href="#diagnostico-gratuito" class="btn-hero-primary">✅ Hacer mi diagnóstico gratis</a>
+    <a href="#diagnostico-gratuito" class="btn-hero-primary">✅ Ver si calificamos para tu caso</a>
     <a href="#diagnostico-gratuito" class="btn-hero-secondary">📘 Recibir Checklist INVIMA gratis</a>
   </div>
 </section>
@@ -1347,7 +1403,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════
 // ⚙️ CONFIGURACIÓN
 // ═══════════════════════
@@ -1606,41 +1662,41 @@ function qBuildResult(cat, score, nombre) {
 
   const configs = {
     URGENTE: {
-      icon: '🚀', badgeClass: 'r-urgente', badge: 'Contacto Urgente',
-      title: `¡${firstName ? firstName + ', t' : 'T'}u negocio está listo para despegar!`,
-      desc: 'Tienes todo lo necesario para formalizarte ahora mismo. Un asesor de nuestro equipo te contactará en las próximas horas para escuchar tu caso y agendar tu sesión con el Ingeniero de Alimentos.',
+      icon: '🚀', badgeClass: 'r-urgente', badge: '¡Podemos trabajar contigo!',
+      title: `${firstName ? firstName + ', t' : 'T'}u negocio está listo para formalizarse — y nosotros nos encargamos de todo.`,
+      desc: 'Basado en tus respuestas, tienes el perfil ideal para que nuestro equipo tome el proceso por completo. No tendrás que lidiar con formularios, laboratorios ni tecnicismos. Escríbenos ahora por WhatsApp y empezamos esta semana.',
       cta: `
         <div class="r-cta-wrap">
-          <a class="r-cta-btn orange" href="https://wa.me/573181471085?text=Hola,%20acabo%20de%20hacer%20el%20diagnóstico%20en%20Formalízalo%20y%20quiero%20hablar%20con%20un%20asesor" target="_blank">
-            💬 Hablar con un asesor ahora
+          <a class="r-cta-btn orange" href="https://wa.me/573181471085?text=Hola,%20acabo%20de%20hacer%20el%20diagnóstico%20en%20Formalízalo%20y%20quiero%20que%20me%20ayuden%20con%20el%20proceso%20completo" target="_blank">
+            💬 Hablar con el equipo ahora por WhatsApp
           </a>
           <a class="r-cta-btn purple" href="https://calendly.com/formalizalo/asesoria_gratuita" target="_blank">
-            📅 Agendar asesoría gratuita
+            📅 Prefiero agendar una llamada gratuita
           </a>
         </div>`
     },
     APTO: {
-      icon: '✅', badgeClass: 'r-apto', badge: 'Apto para asesoría',
-      title: `${firstName ? firstName + ', t' : 'T'}u negocio tiene muy buen potencial`,
-      desc: 'Estás en un excelente punto para dar el salto legal. Puedes agendar tu asesoría gratuita con el Ingeniero de Alimentos cuando quieras.',
+      icon: '✅', badgeClass: 'r-apto', badge: 'Podemos ayudarte',
+      title: `${firstName ? firstName + ', t' : 'T'}u negocio tiene muy buen potencial — hablemos.`,
+      desc: 'Hay algunos pasos previos antes de arrancar con el trámite completo, pero eso es exactamente lo que hacemos: te acompañamos desde donde estás hasta donde necesitas llegar. Escríbenos y te explicamos cómo lo haríamos en tu caso.',
       cta: `
         <div class="r-cta-wrap">
           <a class="r-cta-btn purple" href="https://calendly.com/formalizalo/asesoria_gratuita" target="_blank">
             📅 Agendar asesoría gratuita
           </a>
-          <a class="r-cta-sec" href="https://wa.me/573181471085" target="_blank">💬 O escríbenos al WhatsApp →</a>
+          <a class="r-cta-sec" href="https://wa.me/573181471085?text=Hola,%20acabo%20de%20hacer%20el%20diagnóstico%20en%20Formalízalo%20y%20quiero%20saber%20cómo%20me%20pueden%20ayudar" target="_blank">💬 O escríbenos al WhatsApp →</a>
         </div>`
     },
     NO_APTO: {
-      icon: '📈', badgeClass: 'r-no-apto', badge: 'Vas por buen camino',
-      title: `¡${firstName ? firstName + ', v' : 'V'}as por buen camino, sigue así!`,
-      desc: 'Tu negocio está creciendo y eso nos alegra. Te iremos compartiendo contenido práctico para que cuando llegue el momento de formalizarte, lo hagas con total seguridad y sin gastar de más.',
+      icon: '📈', badgeClass: 'r-no-apto', badge: 'Todavía no es el momento',
+      title: `${firstName ? firstName + ', t' : 'T'}u negocio aún necesita crecer un poco más antes de formalizar.`,
+      desc: 'En este punto, invertir en el registro INVIMA no sería lo más inteligente para ti. Hay pasos previos — de producción, de infraestructura o de claridad en tus metas — que vale la pena resolver primero. Te enviamos el Checklist INVIMA para que vayas preparando el terreno. Cuando estés listo, aquí estaremos.',
       cta: ``
     },
     RECHAZADO: {
-      icon: '📚', badgeClass: 'r-rechazado', badge: 'Gracias por tu tiempo',
-      title: 'Hoy no es el momento… y está bien',
-      desc: 'Todavía hay camino por recorrer antes de la formalización, pero eso no es un obstáculo — es una oportunidad para crecer. Ya te enviamos el Checklist para que puedas ir dando los primeros pasos. Cuando estés listo, aquí estaremos.',
+      icon: '📚', badgeClass: 'r-rechazado', badge: 'No es el momento aún',
+      title: 'Hoy no somos el equipo indicado para ti — y está bien.',
+      desc: 'Formalízalo trabaja con negocios que están listos para invertir y crecer con registro legal. Según tus respuestas, todavía hay camino por recorrer antes de que tenga sentido arrancar este proceso. No es un rechazo definitivo — es honestidad. Cuando tu situación cambie, volvé a hacer el diagnóstico. El Checklist ya está en tu correo para que vayas avanzando.',
       cta: ``
     }
   };
@@ -1697,13 +1753,3 @@ async function qSubmit() {
     qShowStep('result', 'forward');
 
     // Animar la barra de score tras renderizar
-    const pct = Math.round((score / 35) * 100);
-    setTimeout(() => {
-      const fill = document.getElementById('rScoreFill');
-      if (fill) fill.style.width = pct + '%';
-    }, 400);
-  }, 1800);
-}
-</script>
-</body>
-</html>
