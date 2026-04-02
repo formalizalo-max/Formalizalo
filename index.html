@@ -203,8 +203,69 @@ nav {
 }
 
 /* ═══════════════════════════════════════════
-   LEAD MAGNET SECTION
+   CÓMO FUNCIONA
 ═══════════════════════════════════════════ */
+.como-funciona {
+  background: var(--blanco);
+  padding: 72px 5% 64px;
+  position: relative;
+}
+.como-funciona::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--p3), var(--naranja), var(--p5));
+}
+.cf-inner { max-width: 1080px; margin: 0 auto; }
+.cf-header { text-align: center; margin-bottom: 52px; }
+.cf-header h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--texto); letter-spacing: -0.7px; margin-bottom: 12px; }
+.cf-header p { font-size: 16px; color: var(--texto2); max-width: 540px; margin: 0 auto; line-height: 1.65; }
+
+.cf-steps {
+  display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr;
+  align-items: start; gap: 0;
+}
+.cf-step {
+  background: var(--fondo);
+  border: 1.5px solid var(--borde);
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  position: relative;
+}
+.cf-step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--grad);
+  color: var(--blanco); font-size: 16px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 14px rgba(74,47,160,0.3);
+}
+.cf-step-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+.cf-step h3 { font-size: 16px; font-weight: 800; color: var(--texto); margin-bottom: 8px; line-height: 1.3; }
+.cf-step p { font-size: 13px; color: var(--texto2); line-height: 1.65; }
+.cf-step.highlight {
+  border-color: var(--p4);
+  background: linear-gradient(135deg, rgba(74,47,160,0.04), rgba(61,82,213,0.03));
+}
+.cf-step.highlight .cf-step-num { background: var(--grad-naranja); box-shadow: 0 4px 14px rgba(255,140,0,0.35); }
+.cf-warning {
+  margin-top: 10px;
+  background: rgba(255,140,0,0.08);
+  border: 1.5px solid rgba(255,140,0,0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px; color: #92510a; font-weight: 600; line-height: 1.5;
+}
+.cf-arrow {
+  display: flex; align-items: center; justify-content: center;
+  padding-top: 56px;
+  color: var(--p4); font-size: 22px; font-weight: 800; opacity: 0.5;
+}
+
+@media (max-width: 760px) {
+  .cf-steps { grid-template-columns: 1fr; }
+  .cf-arrow { padding: 8px 0; transform: rotate(90deg); }
+}
 .lead-magnet {
   background: var(--blanco);
   padding: 80px 5%;
@@ -871,11 +932,11 @@ footer {
 
       <h1>Nosotros hacemos<br><span>todo el trámite por ti.</span></h1>
 
-      <p class="hero-sub">Tú te enfocas en producir. Nuestro equipo de Ingenieros de Alimentos se encarga del Registro INVIMA, las BPM y el empaque legal — de principio a fin, sin que tengas que navegar la burocracia solo.</p>
+      <p class="hero-sub">Tramitamos tu Registro INVIMA — pero primero verificamos que tu planta cumpla las BPM. Porque un registro sin BPM es tiempo y dinero perdido: el INVIMA puede revocártelo en la primera visita.</p>
 
       <div class="hero-ctas">
         <a href="#diagnostico-gratuito" class="btn-hero-primary">
-          ✅ Ver si calificamos para tu caso
+          🚀 ¿Listo para tu Registro INVIMA?
         </a>
         <a href="#diagnostico-gratuito" class="btn-hero-secondary">
           📘 Recibir Checklist INVIMA gratis
@@ -900,6 +961,49 @@ footer {
     <div class="stat"><div class="stat-num"><span>100</span>%</div><div class="stat-label">Legal garantizado</div></div>
     <div class="stat"><div class="stat-num"><span>24</span>h</div><div class="stat-label">Primera respuesta</div></div>
     <div class="stat"><div class="stat-num"><span>0</span></div><div class="stat-label">Trámites que haces tú</div></div>
+  </div>
+</section>
+
+<!-- ═══ CÓMO FUNCIONA ═══ -->
+<section class="como-funciona">
+  <div class="cf-inner">
+    <div class="cf-header">
+      <span class="section-label">Nuestro proceso</span>
+      <h2>Primero las BPM. Después el registro.<br>Así el INVIMA no te lo revoca.</h2>
+      <p>Obtener el Registro INVIMA sin cumplir las BPM es el error más caro que puede cometer un emprendedor. Nosotros lo hacemos en el orden correcto.</p>
+    </div>
+    <div class="cf-steps">
+
+      <!-- Paso 1 -->
+      <div class="cf-step">
+        <div class="cf-step-num">1</div>
+        <span class="cf-step-icon">🔍</span>
+        <h3>Diagnóstico de BPM en tu planta</h3>
+        <p>Evaluamos el estado real de tu producción: infraestructura, procesos, documentación y personal. Identificamos exactamente qué necesita corregirse antes de tramitar el registro.</p>
+        <div class="cf-warning">⚠️ Sin este paso, el INVIMA puede revocarte el registro en su primera visita.</div>
+      </div>
+
+      <div class="cf-arrow">→</div>
+
+      <!-- Paso 2 -->
+      <div class="cf-step highlight">
+        <div class="cf-step-num">2</div>
+        <span class="cf-step-icon">🏭</span>
+        <h3>Adecuación y certificación BPM</h3>
+        <p>Nuestro Ingeniero de Alimentos te acompaña en los ajustes necesarios — documentación, protocolos, condiciones de planta — hasta que cumplas la norma. Tú produces, nosotros gestionamos.</p>
+      </div>
+
+      <div class="cf-arrow">→</div>
+
+      <!-- Paso 3 -->
+      <div class="cf-step">
+        <div class="cf-step-num">3</div>
+        <span class="cf-step-icon">📋</span>
+        <h3>Trámite del Registro INVIMA</h3>
+        <p>Con las BPM en orden, gestionamos el Registro INVIMA completo: documentos, radicación, seguimiento y correcciones. Tú recibes el registro — sólido, legal y sin riesgo de revocación.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -989,10 +1093,10 @@ footer {
       <p>No te damos una guía para que lo hagas solo. Nuestro Ingeniero de Alimentos se hace cargo del proceso completo: documentos, trámites, correcciones y seguimiento hasta tener el resultado en tus manos.</p>
     </div>
     <div class="ben-grid">
-      <div class="ben-card"><div class="ben-num">01</div><h3>Diagnóstico y ruta personalizada</h3><p>Evaluamos tu producto, tu planta y tu situación real. Te decimos qué necesitas — y nosotros lo gestionamos.</p></div>
-      <div class="ben-card"><div class="ben-num">02</div><h3>Nosotros preparamos todo</h3><p>Documentos, formularios, análisis, diseño de empaque. Tú solo revisas y apruebas. Sin tecnicismos, sin estrés.</p></div>
-      <div class="ben-card"><div class="ben-num">03</div><h3>Acompañamiento hasta el final</h3><p>No desaparecemos después del primer paso. Seguimos contigo hasta que el registro o la certificación esté en tus manos.</p></div>
-      <div class="ben-card"><div class="ben-num">04</div><h3>100% virtual, desde cualquier ciudad</h3><p>Trabajamos con emprendedores de todo Colombia. No necesitas viajar ni desplazarte — todo se gestiona de forma ágil y remota.</p></div>
+      <div class="ben-card"><div class="ben-num">01</div><h3>Revisamos las BPM antes de tramitar</h3><p>No radicamos el registro si tu planta no está lista. Así evitamos que el INVIMA te lo revoque y pierdas lo invertido.</p></div>
+      <div class="ben-card"><div class="ben-num">02</div><h3>Nosotros preparamos todo</h3><p>Documentos, formularios, análisis de laboratorio y diseño de empaque. Tú solo revisas y apruebas — sin tecnicismos ni estrés.</p></div>
+      <div class="ben-card"><div class="ben-num">03</div><h3>Acompañamiento hasta el registro en mano</h3><p>No desaparecemos después del diagnóstico. Seguimos contigo en cada paso hasta que el registro esté aprobado y seguro.</p></div>
+      <div class="ben-card"><div class="ben-num">04</div><h3>100% virtual, desde cualquier ciudad</h3><p>Trabajamos con emprendedores de todo Colombia. No necesitas desplazarte — todo se gestiona de forma ágil y remota.</p></div>
     </div>
   </div>
 </section>
@@ -1167,7 +1271,7 @@ footer {
           <div class="q-options">
             <div class="q-opt" data-q="6" data-v="0" onclick="qSelect(this)"><div class="q-letter">A</div><div class="q-text">Nunca, y no quiero que lo haga</div></div>
             <div class="q-opt" data-q="6" data-v="2" onclick="qSelect(this)"><div class="q-letter">B</div><div class="q-text">No me ha visitado, pero quiero estar preparado</div></div>
-            <div class="q-opt" data-q="6" data-v="4" onclick="qSelect(this)"><div class="q-letter">C</div><div class="q-text">Sí me visitó, no abrieron, pero quiero estar listo</div></div>
+            <div class="q-opt" data-q="6" data-v="4" onclick="qSelect(this)"><div class="q-letter">C</div><div class="q-text">Sí me visitó, y me tuve que esconder</div></div>
             <div class="q-opt" data-q="6" data-v="5" onclick="qSelect(this)"><div class="q-letter">D</div><div class="q-text">Sí me visitó, tengo reportes y necesito corregir BPM</div></div>
           </div>
           <div class="q-btns"><button class="q-btn q-btn-back" onclick="qPrev(6)">← Atrás</button></div>
@@ -1189,7 +1293,7 @@ footer {
         <!-- CONTACTO -->
         <div class="q-step" id="q-8">
           <div class="q-title">¡Excelente! 🎉 Dejanos tus datos para enviarte el resultado</div>
-          <div class="q-sub">Te enviamos el <strong>Checklist INVIMA en PDF</strong> y tu diagnóstico personalizado al instante. Si calificás, un asesor te escribe en menos de 24 h.</div>
+          <div class="q-sub">Te enviamos el <strong>Checklist INVIMA en EXCEL</strong> y tu diagnóstico personalizado al instante. Si calificás, un asesor te escribe en menos de 24 h.</div>
 
           <div class="q-field"><label>Nombre completo <span style="color:#e53e3e">*</span></label><input type="text" id="qNombre" placeholder="Ej: Ana García" oninput="qCheckContact()"></div>
 
@@ -1363,7 +1467,7 @@ footer {
   <h2>¿Querés vender legal sin hacer el trámite solo?</h2>
   <p>Hacé el diagnóstico, descubrí si calificás y dejá que nuestro equipo se encargue de todo — vos seguís produciendo.</p>
   <div class="footer-cta-btns">
-    <a href="#diagnostico-gratuito" class="btn-hero-primary">✅ Ver si calificamos para tu caso</a>
+    <a href="#diagnostico-gratuito" class="btn-hero-primary">🚀 ¿Listo para tu Registro INVIMA?</a>
     <a href="#diagnostico-gratuito" class="btn-hero-secondary">📘 Recibir Checklist INVIMA gratis</a>
   </div>
 </section>
@@ -1638,7 +1742,7 @@ function qBuildResult(cat, score, nombre) {
     <div class="r-checklist-box">
       <div class="r-cl-icon">📋</div>
       <div class="r-cl-text">
-        <strong>Tu Checklist INVIMA PDF ya está en camino</strong>
+        <strong>Tu Checklist INVIMA EXCEL ya está en camino</strong>
         <span>Revisa tu bandeja de entrada (también en spam, por si acaso).</span>
       </div>
     </div>`;
