@@ -1830,59 +1830,58 @@ function qBuildResult(cat, score, nombre) {
 }
 
 async function qSubmit() {
-  const nombre   = document.getElementById('qNombre').value.trim();
-  const empresa  = document.getElementById('qEmpresa').value.trim();
-  const cargo    = document.getElementById('qCargo').value.trim();
+  const nombre = document.getElementById('qNombre').value.trim();
+  const empresa = document.getElementById('qEmpresa').value.trim();
+  const cargo = document.getElementById('qCargo').value.trim();
   const whatsapp = document.getElementById('qWhatsapp').value.trim();
-  const email    = document.getElementById('qEmail').value.trim();
+  const email = document.getElementById('qEmail').value.trim();
   const linkedin = document.getElementById('qLinkedin').value.trim();
-  const optin    = document.getElementById('qOptin').checked;
+  const optin = document.getElementById('qOptin').checked;
 
-  const whatsappFull = '+57' + whatsapp.replace(/\D/g, '');
-
-  const score     = qCalcScore();
+  const whatsappFull = '57' + whatsapp.replace(/\D/g, '');
+  const score = qCalcScore();
   const categoria = qClassify(score);
 
-  // 1. Mostrar pantalla de loading inmediatamente
+  const respuestasTexto = Array.from({ length: 7 }, (_, i) => {
+    const q = i + 1;
+    const selected = document.querySelector(`.q-opt[data-q="${q}"].sel .q-text`);
+    return selected ? `${q}. ${selected.textContent.trim()}` : `${q}. Sin respuesta`;
+  }).join('\n');
+
   qShowStep('loading', 'forward');
 
-  // 2. Payload para Make → Brevo
   const payload = {
-    nombre, empresa, cargo,
+    nombre,
+    empresa,
+    cargo,
     whatsapp: whatsappFull,
-    email, linkedin,
-    optin_email: optin,
-    score, categoria,
+    email,
+    linkedin,
+    optinemail: optin,
+    score,
+    categoria,
+    respuestas_texto: respuestasTexto,
     respuestas: {
-      q1: qAnswers[1], q2: qAnswers[2], q3: qAnswers[3],
-      q4: qAnswers[4], q5: qAnswers[5], q6: qAnswers[6], q7: qAnswers[7]
+      q1: qAnswers[1],
+      q2: qAnswers[2],
+      q3: qAnswers[3],
+      q4: qAnswers[4],
+      q5: qAnswers[5],
+      q6: qAnswers[6],
+      q7: qAnswers[7]
     },
     timestamp: new Date().toISOString()
   };
 
-  // 3. Enviar al webhook de Make (no-bloqueante; si falla, igual mostramos resultado)
   try {
-    await fetch(ZAPIER_WEBHOOK, {
+    await fetch(ZAPIERWEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-  } catch(e) {
-    console.warn('Webhook error (non-fatal):', e);
+  } catch (e) {
+    console.warn('Webhook error non-fatal', e);
   }
-
-  // 4. Tras 1.4 s de loading, construir y mostrar resultado según categoría
-  setTimeout(() => {
-    const html = qBuildResult(categoria, score, nombre);
-    document.getElementById('qResultContent').innerHTML = html;
-    qShowStep('result', 'forward');
-
-    // 5. Animar barra de score después de renderizar
-    setTimeout(() => {
-      const fill = document.getElementById('rScoreFill');
-      if (fill) fill.style.width = Math.round((score / 35) * 100) + '%';
-    }, 250);
-  }, 1400);
 }
 </script>
 </body>
