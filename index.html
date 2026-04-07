@@ -1518,13 +1518,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════
 // ⚙️ CONFIGURACIÓN
 // ═══════════════════════
-const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/isug68sl6zo05x7tkqhu2s169wyqnm3s';
-const ZAPIER_WEBHOOK = MAKE_WEBHOOK_URL;
-const ZAPIERWEBHOOK = MAKE_WEBHOOK_URL;
+const ZAPIER_WEBHOOK = 'https://hook.eu1.make.com/isug68sl6zo05x7tkqhu2s169wyqnm3s';
 
 // ═══════════════════════
 // FAQ
@@ -1831,7 +1829,7 @@ function qBuildResult(cat, score, nombre) {
   `;
 }
 
-async async function qSubmit() {
+async function qSubmit() {
   const nombre   = document.getElementById('qNombre').value.trim();
   const empresa  = document.getElementById('qEmpresa').value.trim();
   const cargo    = document.getElementById('qCargo').value.trim();
