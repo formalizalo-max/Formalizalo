@@ -1518,11 +1518,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ═══════════════════════
 // ⚙️ CONFIGURACIÓN
 // ═══════════════════════
-const ZAPIER_WEBHOOK = 'https://hook.eu1.make.com/isug68sl6zo05x7tkqhu2s169wyqnm3s';
+const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/isug68sl6zo05x7tkqhu2s169wyqnm3s';
+const ZAPIER_WEBHOOK = MAKE_WEBHOOK_URL;
+const ZAPIERWEBHOOK = MAKE_WEBHOOK_URL;
 
 // ═══════════════════════
 // FAQ
@@ -1839,11 +1841,14 @@ async async function qSubmit() {
   const optin    = document.getElementById('qOptin').checked;
 
   const whatsappFull = '+57' + whatsapp.replace(/\D/g, '');
+
   const score     = qCalcScore();
   const categoria = qClassify(score);
 
+  // 1. Mostrar pantalla de loading inmediatamente
   qShowStep('loading', 'forward');
 
+  // 2. Payload para Make → Brevo
   const payload = {
     nombre, empresa, cargo,
     whatsapp: whatsappFull,
@@ -1857,6 +1862,7 @@ async async function qSubmit() {
     timestamp: new Date().toISOString()
   };
 
+  // 3. Enviar al webhook de Make (no-bloqueante; si falla, igual mostramos resultado)
   try {
     await fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
@@ -1867,11 +1873,13 @@ async async function qSubmit() {
     console.warn('Webhook error (non-fatal):', e);
   }
 
+  // 4. Tras 1.4 s de loading, construir y mostrar resultado según categoría
   setTimeout(() => {
     const html = qBuildResult(categoria, score, nombre);
     document.getElementById('qResultContent').innerHTML = html;
     qShowStep('result', 'forward');
 
+    // 5. Animar barra de score después de renderizar
     setTimeout(() => {
       const fill = document.getElementById('rScoreFill');
       if (fill) fill.style.width = Math.round((score / 35) * 100) + '%';
