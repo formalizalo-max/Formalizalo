@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -902,7 +903,69 @@ footer {
   .btn-hero-primary, .btn-hero-secondary { justify-content: center; }
   .pr-grid { grid-template-columns: 1fr; }
 }
+/* ═══ BOTÓN FLOTANTE WHATSAPP ═══ */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  padding: 13px 20px 13px 16px;
+  border-radius: 99px;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.22s cubic-bezier(.4,0,.2,1);
+  /* Animación de entrada */
+  animation: waEntrance 0.6s cubic-bezier(.34,1.56,.64,1) both;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+@keyframes waEntrance {
+  from { opacity: 0; transform: translateY(20px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.wa-float:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(37,211,102,0.55);
+}
+
+.wa-icon {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  min-width: 26px;
+}
+
+.wa-label {
+  white-space: nowrap;
+}
+
+/* En móvil: solo ícono, sin texto */
+@media (max-width: 500px) {
+  .wa-float {
+    padding: 14px;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+  }
+  .wa-label { display: none; }
+  .wa-icon  { width: 28px; height: 28px; }
+}
 </style>
+
+
+
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1204,7 +1267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cal-header">
       <span class="section-label" style="background:rgba(255,140,0,0.1);color:var(--naranja);border-color:rgba(255,140,0,0.2)">🎯 Diagnóstico Gratuito</span>
       <h2>¿Podemos ayudarte?<br>Descúbrelo en 2 minutos</h2>
-      <p>Respondé 7 preguntas rápidas. Si tu negocio califica, un asesor te contacta en menos de 24 horas para que empecemos a trabajar. <strong>Resultado inmediato + Checklist INVIMA en tu correo.</strong></p>
+      <p>Respondé 4 preguntas rápidas. Si tu negocio califica, un asesor te contacta en menos de 24 horas para que empecemos a trabajar. <strong>Resultado inmediato + Checklist INVIMA en tu correo.</strong></p>
     </div>
 
     <div class="quiz-card">
@@ -1225,7 +1288,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="quiz-progress" id="qProgressWrap">
         <div class="qp-row">
           <span class="qp-label">Progreso</span>
-          <span class="qp-num" id="qProgressNum">Pregunta 1 de 7</span>
+          <span class="qp-num" id="qProgressNum">Pregunta 1 de 4</span>
         </div>
         <div class="qp-bar"><div class="qp-fill" id="qProgressFill" style="width:14%"></div></div>
       </div>
@@ -1284,45 +1347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="q-btns"><button class="q-btn q-btn-back" onclick="qPrev(4)">← Atrás</button></div>
         </div>
 
-        <!-- Q5 -->
-        <div class="q-step" id="q-5">
-          <div class="q-title">¿Quién toma las decisiones en tu negocio?</div>
-          <div class="q-sub">Esto nos ayuda a entender con quién hablar directamente.</div>
-          <div class="q-options">
-            <div class="q-opt" data-q="5" data-v="0" onclick="qSelect(this)"><div class="q-letter">A</div><div class="q-text">No estoy seguro / depende de otros</div></div>
-            <div class="q-opt" data-q="5" data-v="2" onclick="qSelect(this)"><div class="q-letter">B</div><div class="q-text">Lo decide un familiar o socio poco disponible</div></div>
-            <div class="q-opt" data-q="5" data-v="4" onclick="qSelect(this)"><div class="q-letter">C</div><div class="q-text">Yo decido junto con mi socio principal</div></div>
-            <div class="q-opt" data-q="5" data-v="5" onclick="qSelect(this)"><div class="q-letter">D</div><div class="q-text">Soy el único dueño y decido / hay gerencia clara</div></div>
-          </div>
-          <div class="q-btns"><button class="q-btn q-btn-back" onclick="qPrev(5)">← Atrás</button></div>
-        </div>
-
-        <!-- Q6 -->
-        <div class="q-step" id="q-6">
-          <div class="q-title">¿El INVIMA ya te ha visitado?</div>
-          <div class="q-sub">Cuéntanos tu situación actual con la entidad reguladora.</div>
-          <div class="q-options">
-            <div class="q-opt" data-q="6" data-v="0" onclick="qSelect(this)"><div class="q-letter">A</div><div class="q-text">Nunca, y no quiero que lo haga</div></div>
-            <div class="q-opt" data-q="6" data-v="2" onclick="qSelect(this)"><div class="q-letter">B</div><div class="q-text">No me ha visitado, pero quiero estar preparado</div></div>
-            <div class="q-opt" data-q="6" data-v="4" onclick="qSelect(this)"><div class="q-letter">C</div><div class="q-text">Sí me visitó, no abrieron, pero quiero estar listo</div></div>
-            <div class="q-opt" data-q="6" data-v="5" onclick="qSelect(this)"><div class="q-letter">D</div><div class="q-text">Sí me visitó, tengo reportes y necesito corregir BPM</div></div>
-          </div>
-          <div class="q-btns"><button class="q-btn q-btn-back" onclick="qPrev(6)">← Atrás</button></div>
-        </div>
-
-        <!-- Q7 -->
-        <div class="q-step" id="q-7">
-          <div class="q-title">¿En cuánto tiempo quieres estar 100% legal?</div>
-          <div class="q-sub">Última pregunta — tu horizonte de tiempo nos ayuda a priorizar.</div>
-          <div class="q-options">
-            <div class="q-opt" data-q="7" data-v="0" onclick="qSelect(this)"><div class="q-letter">A</div><div class="q-text">No tengo fecha, solo quiero información</div></div>
-            <div class="q-opt" data-q="7" data-v="2" onclick="qSelect(this)"><div class="q-letter">B</div><div class="q-text">Tal vez en 1 o 2 años</div></div>
-            <div class="q-opt" data-q="7" data-v="4" onclick="qSelect(this)"><div class="q-letter">C</div><div class="q-text">Dentro de los próximos 6 meses</div></div>
-            <div class="q-opt" data-q="7" data-v="5" onclick="qSelect(this)"><div class="q-letter">D</div><div class="q-text">Ya debería estar listo — solo necesito apoyo profesional</div></div>
-          </div>
-          <div class="q-btns"><button class="q-btn q-btn-back" onclick="qPrev(7)">← Atrás</button></div>
-        </div>
-
+        
         <!-- CONTACTO -->
         <div class="q-step" id="q-8">
           <div class="q-title">¡Excelente! 🎉 Dejanos tus datos para enviarte el resultado</div>
@@ -1547,29 +1572,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // ═══════════════════════
 const ZAPIER_WEBHOOK = 'https://hook.eu1.make.com/isug68sl6zo05x7tkqhu2s169wyqnm3s';
 
-// ═══════════════════════
-// FAQ
-// ═══════════════════════
 function toggleFaq(el) {
   const isOpen = el.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!isOpen) el.classList.add('open');
 }
 
-// ═══════════════════════
-// QUIZ — LÓGICA COMPLETA
-// ═══════════════════════
 const qAnswers = {};
 let qCurrentStep = 1;
-const TOTAL_QUESTIONS = 7;
+const TOTAL_QUESTIONS = 4; // ← CAMBIO 1: de 7 a 4
 
-// Avanza al siguiente paso con animación
 function qShowStep(n, direction) {
   const current = document.querySelector('.q-step.active');
   const next = document.getElementById(`q-${n}`);
   if (!next) return;
 
-  // Dirección: 'forward' o 'backward'
   const dir = direction || 'forward';
   const exitClass  = dir === 'forward' ? 'exit-left'  : 'exit-right';
   const enterClass = dir === 'forward' ? 'enter-right' : 'enter-left';
@@ -1582,7 +1599,6 @@ function qShowStep(n, direction) {
   }
 
   next.classList.add(enterClass);
-  // Pequeño delay para que la animación de entrada se vea bien
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       next.classList.add('active');
@@ -1592,7 +1608,6 @@ function qShowStep(n, direction) {
     });
   });
 
-  // Barra de progreso
   const wrap = document.getElementById('qProgressWrap');
   if (n === 'loading' || n === 'result') {
     wrap.style.display = 'none';
@@ -1602,7 +1617,7 @@ function qShowStep(n, direction) {
     if (!isNaN(q) && q <= TOTAL_QUESTIONS) {
       const pct = Math.round((q / (TOTAL_QUESTIONS + 1)) * 100);
       document.getElementById('qProgressFill').style.width = pct + '%';
-      document.getElementById('qProgressNum').textContent = `Pregunta ${q} de ${TOTAL_QUESTIONS}`;
+      document.getElementById('qProgressNum').textContent = `Pregunta ${q} de ${TOTAL_QUESTIONS}`; // ← CAMBIO 2
     } else {
       document.getElementById('qProgressFill').style.width = '95%';
       document.getElementById('qProgressNum').textContent = 'Tus datos';
@@ -1612,32 +1627,29 @@ function qShowStep(n, direction) {
   qCurrentStep = n;
 }
 
-// Seleccionar una opción → avanza automáticamente con delay visual
 function qSelect(el) {
   const q = el.dataset.q;
-
-  // Marcar seleccionado
   document.querySelectorAll(`.q-opt[data-q="${q}"]`).forEach(o => o.classList.remove('sel'));
   el.classList.add('sel');
   qAnswers[q] = parseInt(el.dataset.v);
 
-  // Deshabilitar todas las opciones temporalmente para evitar doble clic
   const opts = document.querySelectorAll(`.q-opt[data-q="${q}"]`);
   opts.forEach(o => o.style.pointerEvents = 'none');
 
-  // Avanzar automáticamente tras 420ms (tiempo para ver el tick visual)
   setTimeout(() => {
     opts.forEach(o => o.style.pointerEvents = '');
     const nextQ = parseInt(q) + 1;
-    qShowStep(nextQ, 'forward');
+    // ← CAMBIO 3: después de Q4 va directo al paso de contacto (q-8)
+    const nextStep = (parseInt(q) >= TOTAL_QUESTIONS) ? 8 : nextQ;
+    qShowStep(nextStep, 'forward');
   }, 420);
 }
 
 function qNext(from) { qShowStep(from + 1, 'forward'); }
 function qPrev(from) {
-  const prevStep = from - 1;
+  // ← CAMBIO 4: al retroceder desde q-8, vuelve a q-4 (no q-7)
+  const prevStep = (from === 8) ? TOTAL_QUESTIONS : from - 1;
   qShowStep(prevStep, 'backward');
-  // Restaurar la respuesta previamente seleccionada
   if (qAnswers[prevStep] !== undefined) {
     setTimeout(() => {
       document.querySelectorAll(`.q-opt[data-q="${prevStep}"]`).forEach(o => {
@@ -1648,18 +1660,13 @@ function qPrev(from) {
   }
 }
 
-// ── Validación WhatsApp colombiano ──
 function isValidWa(val) {
   const clean = val.replace(/\D/g, '');
-  // 10 dígitos, empieza en 3
   return /^3\d{9}$/.test(clean);
 }
-
-// ── Validación Email ──
 function isValidEmail(val) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
 }
-
 function validateWa() {
   const val = document.getElementById('qWhatsapp').value;
   const err = document.getElementById('waError');
@@ -1673,7 +1680,6 @@ function validateWa() {
   }
   qCheckContact();
 }
-
 function validateEmail() {
   const val = document.getElementById('qEmail').value;
   const err = document.getElementById('emailError');
@@ -1687,7 +1693,6 @@ function validateEmail() {
   }
   qCheckContact();
 }
-
 function qCheckContact() {
   const nombre   = document.getElementById('qNombre').value.trim();
   const empresa  = document.getElementById('qEmpresa').value.trim();
@@ -1697,8 +1702,6 @@ function qCheckContact() {
   const ok = nombre && empresa && isValidWa(whatsapp) && isValidEmail(email) && optin;
   document.getElementById('qn-8').disabled = !ok;
 }
-
-// ── Validación LinkedIn (opcional) ──
 function validateLinkedin() {
   const val = document.getElementById('qLinkedin').value.trim();
   const err = document.getElementById('linkedinError');
@@ -1711,6 +1714,7 @@ function validateLinkedin() {
     input.style.borderColor = val ? 'var(--p3)' : 'var(--borde)';
   }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   const waInput = document.getElementById('qWhatsapp');
   if (waInput) {
@@ -1726,16 +1730,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// ← CAMBIO 5: escala ponderada 4 preguntas → 35 pts
 function qCalcScore() {
-  let t = 0;
-  for (let i = 1; i <= 7; i++) t += (qAnswers[i] || 0);
-  return t;
+  let raw = 0;
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) raw += (qAnswers[i] || 0);
+  // Máximo raw = 4 × 5 = 20 → proyectar sobre 35
+  return Math.round(raw * 1.75);
 }
 
 function qClassify(score) {
-  if (score >= 28) return 'URGENTE';
-  if (score >= 20) return 'APTO';
-  if (score >= 10) return 'NO_APTO';
+  if (score >= 16) return 'URGENTE';
+  if (score >= 12) return 'APTO';
+  if (score >= 5) return 'NO_APTO';
   return 'RECHAZADO';
 }
 
@@ -1743,30 +1749,25 @@ function qBuildResult(cat, score, nombre) {
   const firstName = nombre ? nombre.split(' ')[0] : '';
   const pct = Math.round((score / 35) * 100);
 
-  // Diagnóstico dinámico basado en respuestas
   const diag = [];
-  const q1 = qAnswers[1] || 0, q2 = qAnswers[2] || 0, q3 = qAnswers[3] || 0;
-  const q4 = qAnswers[4] || 0, q5 = qAnswers[5] || 0, q6 = qAnswers[6] || 0, q7 = qAnswers[7] || 0;
+  const q1 = qAnswers[1] || 0, q2 = qAnswers[2] || 0;
+  const q3 = qAnswers[3] || 0, q4 = qAnswers[4] || 0;
 
   if (q1 >= 4) diag.push({dot:'verde',  txt:'Tu tipo de negocio tiene perfil para formalización inmediata.'});
   else if (q1 >= 2) diag.push({dot:'naranja', txt:'Tu negocio está en etapa de crecimiento — es el momento de prepararse.'});
-  else diag.push({dot:'rojo',   txt:'Aún en fase inicial; hay pasos previos antes de registrarte.'});
+  else diag.push({dot:'rojo', txt:'Aún en fase inicial; hay pasos previos antes de registrarte.'});
 
   if (q2 >= 4) diag.push({dot:'verde',  txt:'Tu meta de venta legal en canales grandes es alcanzable.'});
   else if (q2 >= 2) diag.push({dot:'naranja', txt:'Tus metas de negocio son válidas, pero conviene reorientarlas.'});
-  else diag.push({dot:'rojo',   txt:'Sin una meta de formalización clara, el registro INVIMA no tendría impacto.'});
+  else diag.push({dot:'rojo', txt:'Sin una meta de formalización clara, el registro INVIMA no tendría impacto.'});
 
   if (q3 >= 4) diag.push({dot:'verde',  txt:'Tu planta tiene base sólida para comenzar el proceso BPM.'});
   else if (q3 >= 2) diag.push({dot:'naranja', txt:'Tu planta necesita ajustes antes de pasar por una visita INVIMA.'});
-  else diag.push({dot:'rojo',   txt:'La producción actual requiere mejoras estructurales primero.'});
+  else diag.push({dot:'rojo', txt:'La producción actual requiere mejoras estructurales primero.'});
 
   if (q4 >= 4) diag.push({dot:'verde',  txt:'Tu disponibilidad de inversión permite avanzar con el proceso completo.'});
   else if (q4 >= 2) diag.push({dot:'naranja', txt:'Con presupuesto limitado, podemos priorizar los pasos más críticos.'});
-  else diag.push({dot:'rojo',   txt:'Sin inversión disponible, el proceso de formalización no es viable aún.'});
-
-  if (q7 >= 4) diag.push({dot:'verde',  txt:'Tu urgencia de plazo nos permite trazar un plan de acción concreto.'});
-  else if (q7 >= 2) diag.push({dot:'naranja', txt:'Tienes tiempo para prepararte bien antes de formalizar.'});
-  else diag.push({dot:'rojo',   txt:'Sin un plazo definido, es difícil comprometerse con el proceso.'});
+  else diag.push({dot:'rojo', txt:'Sin inversión disponible, el proceso de formalización no es viable aún.'});
 
   const diagHTML = diag.map(d =>
     `<div class="r-diag-item"><div class="r-diag-dot dot-${d.dot}"></div><span>${d.txt}</span></div>`
@@ -1795,7 +1796,7 @@ function qBuildResult(cat, score, nombre) {
 
   const configs = {
     URGENTE: {
-      icon: '🚀', badgeClass: 'r-urgente', badge: '¡Podemos trabajar contigo!',
+      icon: '🚀', badgeClass: 'r-urgente', badge: '¡Podemos ayudarte ahora mismo!',
       title: `${firstName ? firstName + ', t' : 'T'}u negocio está listo para formalizarse — y nosotros nos encargamos de todo.`,
       desc: 'Basado en tus respuestas, tienes el perfil ideal para que nuestro equipo tome el proceso por completo. No tendrás que lidiar con formularios, laboratorios ni tecnicismos. Escríbenos ahora por WhatsApp y empezamos esta semana.',
       cta: `
@@ -1821,7 +1822,7 @@ function qBuildResult(cat, score, nombre) {
         </div>`
     },
     NO_APTO: {
-      icon: '📈', badgeClass: 'r-no-apto', badge: 'Todavía no es el momento',
+      icon: '📈', badgeClass: 'r-no-apto', badge: 'Todavía no es el momento pero puedes seguir creciendo',
       title: `${firstName ? firstName + ', t' : 'T'}u negocio aún necesita crecer un poco más antes de formalizar.`,
       desc: 'En este punto, invertir en el registro INVIMA no sería lo más inteligente para ti. Hay pasos previos — de producción, de infraestructura o de claridad en tus metas — que vale la pena resolver primero. Te enviamos el Checklist INVIMA para que vayas preparando el terreno. Cuando estés listo, aquí estaremos.',
       cta: ``
@@ -1835,7 +1836,6 @@ function qBuildResult(cat, score, nombre) {
   };
 
   const c = configs[cat];
-
   return `
     <div class="r-hero">
       <span class="r-hero-icon">${c.icon}</span>
@@ -1862,28 +1862,25 @@ async function qSubmit() {
   const optin    = document.getElementById('qOptin').checked;
 
   const whatsappFull = '+57' + whatsapp.replace(/\D/g, '');
-
   const score     = qCalcScore();
   const categoria = qClassify(score);
 
-  // 1. Mostrar pantalla de loading inmediatamente
   qShowStep('loading', 'forward');
 
-  // 2. Payload para Make → Brevo
   const payload = {
     nombre, empresa, cargo,
     whatsapp: whatsappFull,
     email, linkedin,
     optin_email: optin,
     score, categoria,
+    // Webhook intacto: q5/q6/q7 van como null, Make no se rompe
     respuestas: {
       q1: qAnswers[1], q2: qAnswers[2], q3: qAnswers[3],
-      q4: qAnswers[4], q5: qAnswers[5], q6: qAnswers[6], q7: qAnswers[7]
+      q4: qAnswers[4], q5: null, q6: null, q7: null
     },
     timestamp: new Date().toISOString()
   };
 
-  // 3. Enviar al webhook de Make (no-bloqueante; si falla, igual mostramos resultado)
   try {
     await fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
@@ -1894,13 +1891,10 @@ async function qSubmit() {
     console.warn('Webhook error (non-fatal):', e);
   }
 
-  // 4. Tras 1.4 s de loading, construir y mostrar resultado según categoría
   setTimeout(() => {
     const html = qBuildResult(categoria, score, nombre);
     document.getElementById('qResultContent').innerHTML = html;
     qShowStep('result', 'forward');
-
-    // 5. Animar barra de score después de renderizar
     setTimeout(() => {
       const fill = document.getElementById('rScoreFill');
       if (fill) fill.style.width = Math.round((score / 35) * 100) + '%';
@@ -1908,5 +1902,19 @@ async function qSubmit() {
   }, 1400);
 }
 </script>
+
+<!-- ═══ BOTÓN FLOTANTE WHATSAPP ═══ -->
+<a class="wa-float"
+   href="https://wa.me/573181471085?text=Hola%2C%20vi%20la%20página%20de%20Formalízalo%20y%20quiero%20información%20sobre%20el%20registro%20INVIMA%20y%20BPM"
+   target="_blank"
+   rel="noopener"
+   aria-label="Escríbenos por WhatsApp">
+  <svg class="wa-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.737 5.489 2.027 7.796L0 32l8.469-2.001A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.771-1.854l-.486-.289-5.027 1.188 1.234-4.893-.317-.502A13.24 13.24 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.294-.364-.133-.63-.199-.895.199-.265.398-1.028 1.294-1.26 1.56-.232.265-.464.298-.862.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.056-1.981-2.361-2.213-2.759-.232-.398-.025-.613.174-.811.179-.178.398-.464.597-.696.199-.232.265-.398.398-.663.133-.265.066-.497-.033-.696-.1-.199-.895-2.157-1.227-2.952-.323-.775-.651-.67-.895-.682l-.762-.013c-.265 0-.696.1-1.061.497-.364.398-1.393 1.361-1.393 3.319s1.426 3.85 1.625 4.115c.199.265 2.806 4.281 6.797 6.003.95.41 1.691.655 2.269.838.953.303 1.821.26 2.507.158.765-.114 2.354-.962 2.686-1.891.332-.929.332-1.725.232-1.891-.099-.166-.364-.265-.762-.464z"/>
+  </svg>
+  <span class="wa-label">¿Tienes dudas?</span>
+
+</a>
+
 </body>
 </html>
